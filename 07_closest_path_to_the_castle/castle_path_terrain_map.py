@@ -192,7 +192,7 @@ def draw_path(map: Map, path: List[Point], start_time: float) -> None:
 
 
 if __name__ == '__main__':
-    map_version = 3
+    map_version = 1
 
     if map_version == 1:
         map_array = [
