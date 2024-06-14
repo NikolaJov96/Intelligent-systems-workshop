@@ -1,9 +1,9 @@
 from typing import Callable
 
 import numpy as np
+from frequency_spectrum import DoubleSinSpectrum, TriangleSpectrum, TripleSinSpectrum
 from matplotlib import pyplot as plt
 from matplotlib.animation import FuncAnimation
-from frequency_spectrum import TriangleSpectrum, DoubleSinSpectrum, TripleSinSpectrum
 
 
 def finetune_radio_station(initial_frequency: int, check_clarity: Callable[[int], float]) -> int:

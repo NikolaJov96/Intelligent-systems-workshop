@@ -1,5 +1,5 @@
 import pathlib
-from typing import Optional, List
+from typing import List, Optional
 
 
 def find_subpath(root_dir: pathlib.Path, subpath: List[str]) -> Optional[str]:
