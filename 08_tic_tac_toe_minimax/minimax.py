@@ -192,6 +192,7 @@ def minimax_recursive(board: TicTackToeBoard, maximize_player: str, cache: Dict[
 def minimax(board: TicTackToeBoard) -> List[Tuple[Point, int]]:
     """
     Takes the current tic-tac-toe board and returns the scores of all possible moves.
+    Scores should be -1 for losing, 0 for draw, and 1 for winning.
 
     Params:
     -------
