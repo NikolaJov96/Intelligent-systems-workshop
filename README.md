@@ -6,6 +6,18 @@ Each task can be found in a separate directory. Python files contain skeleton co
 
 The tasks and the supporting code is written naively and without non-algorithmic optimizations, as the purpose is to showcase the algorithms.
 
+Solution hints:
+- 01: Random search
+- 02: Generate and test
+- 03: Hill climb
+- 04: DFS
+- 05: DFS modification
+- 06: BFS and Dijkstra
+- 07: A*
+- 08: Minimax
+- 09: K-means
+- 10: KNN
+
 Needed libraries are listed in `requirements.txt` and can be installed on Linux by running:
 
 ```bash
