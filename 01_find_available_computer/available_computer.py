@@ -19,14 +19,7 @@ def find_available_computer(available_computers: List[bool]) -> Optional[int]:
     int
         Index of one of the available computers. If no computer is available, returns None.
     """
-    options = list(range(len(available_computers)))
-    while len(options) > 0:
-        id = random.randint(0, len(options) - 1)
-        if available_computers[options[id]]:
-            return options[id]
-        else:
-            options.pop(id)
-    return None
+    pass
 
 
 if __name__ == '__main__':

@@ -73,20 +73,7 @@ def find_closest_tree(map: Map, start: Point) -> Optional[List[Point]]:
         List of points on the path to the closest tree.
         If no tree is found, returns None.
     """
-    visited_points = {start}
-    point_list: List[Tuple[Point, List[Point]]] = [(start, [start])]
-    while len(point_list) > 0:
-        current_point, current_path = point_list.pop(0)
-        if map.is_tree(current_point):
-            return current_path
-        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-            new_x = current_point.x + dx
-            new_y = current_point.y + dy
-            new_point = Point(new_x, new_y)
-            if new_point not in visited_points and not map.is_wall(new_point):
-                visited_points.add(new_point)
-                point_list.append((new_point, current_path + [new_point]))
-    return None
+    pass
 
 
 def draw_path(map: Map, path: List[Point]) -> None:

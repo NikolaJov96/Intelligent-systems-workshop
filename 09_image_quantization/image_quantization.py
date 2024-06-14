@@ -28,70 +28,7 @@ def k_means(dataset: List[Tuple], k: int, tries: int) -> Tuple[List[Tuple], int]
     int
         The variation of the clusters.
     """
-    # Get the dimension of the dataset
-    d = len(dataset[0])
-
-    best_variations = [float('inf') for _ in range(k)]
-    best_centroids = None
-
-    for _ in range(tries):
-        # Initialize the centroids randomly
-        previous_centroids = [[randint(0, 255) for _ in range(d)] for _ in range(k)]
-
-        while True:
-            cluster_sums = [[0 for _ in range(d)] for _ in range(k)]
-            cluster_counts = [0 for _ in range(k)]
-
-            # Add each point to the sum of its assigned cluster
-            for point_id in range(len(dataset)):
-                min_distance = float('inf')
-                min_centroid = None
-                for cluster_id in range(k):
-                    distance = 0
-                    for i in range(d):
-                        distance += (dataset[point_id][i] - previous_centroids[cluster_id][i]) ** 2
-                    distance = sqrt(distance)
-                    if distance < min_distance:
-                        min_distance = distance
-                        min_centroid = cluster_id
-                for i in range(d):
-                    cluster_sums[min_centroid][i] += dataset[point_id][i]
-                cluster_counts[min_centroid] += 1
-
-            # Update the centroids
-            centroids = [[0 for _ in range(d)] for _ in range(k)]
-            for cluster_id in range(k):
-                for i in range(d):
-                    centroids[cluster_id][i] = 0
-                    if cluster_counts[cluster_id] > 0:
-                        centroids[cluster_id][i] = int(cluster_sums[cluster_id][i] / cluster_counts[cluster_id])
-
-            # Check for convergence
-            if all(centroid in previous_centroids for centroid in centroids):
-                break
-
-            previous_centroids = centroids
-
-        # Calculate the variation
-        new_variations = [0 for _ in range(k)]
-        for point_id in range(len(dataset)):
-            min_distance = float('inf')
-            min_cluster = 0
-            for cluster_id in range(k):
-                distance = 0
-                for i in range(d):
-                    distance += (dataset[point_id][i] - centroids[cluster_id][i]) ** 2
-                if distance < min_distance:
-                    min_distance = distance
-                    min_cluster = cluster_id
-            new_variations[min_cluster] += min_distance
-
-        # Keep the centroids with the minimal highest variation
-        if sum(new_variations) < sum(best_variations):
-            best_variations = new_variations
-            best_centroids = centroids
-
-    return best_centroids, sum(best_variations)
+    pass
 
 
 if __name__ == '__main__':

@@ -79,53 +79,7 @@ def find_path_to_castle(map: Map, start: Point, castle: Point) -> Optional[List[
         List of points on the path to the closest tree.
         If no tree is found, returns None.
     """
-    def heuristic(point: Point, castle: Point) -> int:
-        return (abs(point.x - castle.x) + abs(point.y - castle.y)) * 10
-
-    visited_points = set()
-    point_list: List[Tuple[Point, int, List[Point]]] = [(start, 0, heuristic(start, castle), [start])]
-    while len(point_list) > 0:
-        current_point, current_cost, _, current_path = point_list.pop(0)
-        visited_points.add(current_point)
-        if current_point == castle:
-            return current_path
-        for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
-            new_x = current_point.x + dx
-            new_y = current_point.y + dy
-            new_point = Point(new_x, new_y)
-            if new_point not in visited_points and not map.is_wall(new_point):
-                heuristic_value = heuristic(new_point, castle)
-                new_cost = current_cost + 10
-                new_cost_plus_heuristic = new_cost + heuristic_value
-
-                # Find if already in the list
-                existing_index = -1
-                for i, (point, _, _, _) in enumerate(point_list):
-                    if point == new_point:
-                        existing_index = i
-                        break
-
-                # If it does exist ...
-                if existing_index != -1:
-                    existing_cost_plus_heuristic = point_list[existing_index][1] + point_list[existing_index][2]
-                    if existing_cost_plus_heuristic <= new_cost_plus_heuristic:
-                        # ... and with the better score, skip
-                        continue
-                    else:
-                        # ... and with the worse score, remove it
-                        point_list.pop(existing_index)
-
-                # If it did not exist or was removed, insert it in the right place
-                insert_index = 0
-                while insert_index < len(point_list):
-                    if point_list[insert_index][1] + point_list[insert_index][2] < new_cost_plus_heuristic:
-                        insert_index += 1
-                    else:
-                        break
-                point_list.insert(
-                    insert_index,
-                    (new_point, new_cost, heuristic_value, current_path + [new_point]))
-    return None
+    pass
 
 
 def draw_path(map: Map, path: List[Point], start_time: float) -> None:

@@ -150,45 +150,6 @@ def draw_board(board: TicTackToeBoard, moves: List[Tuple[Point, int]]) -> np.nda
     return image
 
 
-def minimax_recursive(board: TicTackToeBoard, maximize_player: str, cache: Dict[TicTackToeBoard, int]) -> int:
-    """
-    Recursive function that calculates the minimax score for the given board.
-    """
-    if board in cache:
-        return cache[board]
-
-    # If the game is done, report how it went for the maximizing player
-    state, _ = board.get_state()
-    if state == XoxState.X_WINS:
-        return 1 if maximize_player == 'X' else -1
-    if state == XoxState.O_WINS:
-        return 1 if maximize_player == 'O' else -1
-    if state == XoxState.DRAW:
-        return 0
-
-    if board.next_move == maximize_player:
-        # If the maximizing player is on the move,
-        # assume the the move will be taken that maximizes the score
-        best_score = -2
-        for move in board.get_possible_moves():
-            board_copy = board.copy()
-            board_copy.make_move(move)
-            score = minimax_recursive(board_copy, maximize_player, cache)
-            best_score = max(best_score, score)
-    else:
-        # If the minimizing player is on the move,
-        # assume the the move will be taken that minimizes the score
-        best_score = 2
-        for move in board.get_possible_moves():
-            board_copy = board.copy()
-            board_copy.make_move(move)
-            score = minimax_recursive(board_copy, maximize_player, cache)
-            best_score = min(best_score, score)
-
-    cache[board] = best_score
-    return best_score
-
-
 def minimax(board: TicTackToeBoard) -> List[Tuple[Point, int]]:
     """
     Takes the current tic-tac-toe board and returns the scores of all possible moves.
@@ -202,20 +163,7 @@ def minimax(board: TicTackToeBoard) -> List[Tuple[Point, int]]:
     --------
         List of tuples containing the move and its score.
     """
-    state, _ = board.get_state()
-    if state != XoxState.RUNNING:
-        return []
-
-    moves = []
-    cache = {}
-    for move in board.get_possible_moves():
-        # Find score for each possible move of the starting board
-        board_copy = board.copy()
-        board_copy.make_move(move)
-        score = minimax_recursive(board_copy, board.next_move, cache)
-        moves.append((move, score))
-
-    return moves
+    pass
 
 
 if __name__ == '__main__':

@@ -23,20 +23,7 @@ def knn(dataset: List[Tuple[Cyclist, BicycleSize]], k: int, cyclist: Cyclist) ->
     BicycleSize
         The predicted bicycle size.
     """
-    distances = []
-    for known_cyclist, bike_size in dataset:
-        distance = sqrt(
-            (cyclist.height - known_cyclist.height) ** 2 +
-            (cyclist.leg_length - known_cyclist.leg_length) ** 2 +
-            (cyclist.arm_length - known_cyclist.arm_length) ** 2)
-        distances.append((distance, bike_size))
-    distances.sort(key=lambda x: x[0])
-
-    size_counts = {bike_size: 0 for bike_size in BicycleSize}
-    for _, bike_size in distances[:k]:
-        size_counts[bike_size] += 1
-
-    return max(size_counts, key=size_counts.get)
+    pass
 
 
 def find_best_k(dataset: List[Tuple[Cyclist, BicycleSize]]) -> Tuple[int, List[float]]:
@@ -56,26 +43,7 @@ def find_best_k(dataset: List[Tuple[Cyclist, BicycleSize]]) -> Tuple[int, List[f
     List[float]
         The percentage of correct predictions for each k.
     """
-    best_k = 1
-    best_correct = 0
-    correct_percentages = []
-
-    for k in range(1, len(dataset) + 1):
-        correct = 0
-        for i in range(len(dataset)):
-            example_cyclist, bike_size = dataset.pop(i)
-            if knn(dataset, k, example_cyclist) == bike_size:
-                correct += 1
-            dataset.insert(i, (example_cyclist, bike_size))
-        correct = correct * 100 / len(dataset)
-
-        correct_percentages.append(correct)
-
-        if correct > best_correct:
-            best_k = k
-            best_correct = correct
-
-    return best_k, correct_percentages
+    pass
 
 
 if __name__ == '__main__':

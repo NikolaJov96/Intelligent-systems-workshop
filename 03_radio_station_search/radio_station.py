@@ -21,19 +21,7 @@ def finetune_radio_station(initial_frequency: int, check_clarity: Callable[[int]
     Returns:
         The finetuned frequency.
     """
-    best_clarity = check_clarity(initial_frequency)
-    best_frequency = initial_frequency
-    left_clarity = check_clarity(initial_frequency - 1)
-    right_clarity = check_clarity(initial_frequency + 1)
-    while best_clarity < max(left_clarity, right_clarity):
-        if left_clarity > right_clarity:
-            best_frequency -= 1
-        else:
-            best_frequency += 1
-        best_clarity = check_clarity(best_frequency)
-        left_clarity = check_clarity(best_frequency - 1)
-        right_clarity = check_clarity(best_frequency + 1)
-    return best_frequency
+    pass
 
 
 def draw_plot(frequencies: np.ndarray, check_clarity: Callable[[int], float]) -> None:

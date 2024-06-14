@@ -18,14 +18,7 @@ def find_file(root_dir: pathlib.Path, file_name: str) -> Optional[str]:
     str
         Full path of the first occurrence of the file. If the file is not found, returns None.
     """
-    for path in root_dir.glob('*'):
-        if path.is_dir():
-            found_file = find_file(path, file_name)
-            if found_file:
-                return found_file
-        elif path.is_file() and path.name == file_name:
-            return str(path)
-    return None
+    pass
 
 
 if __name__ == '__main__':

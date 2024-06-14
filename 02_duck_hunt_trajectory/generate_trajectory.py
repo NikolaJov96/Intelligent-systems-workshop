@@ -51,19 +51,7 @@ def generate_trajectory(
     Returns:
         The trajectory of the duck.
     """
-    min_straight_length = screen_width // 10
-    max_straight_length = screen_width // 2
-    start = Point(screen_width // 2, screen_height - grass_height + 1)
-    trajectory = ZigZagTrajectory(start, [])
-    # While a correct trajectory is not randomly generated, keep trying
-    while not is_trajectory_valid(screen_width, screen_height, grass_height, trajectory):
-        straights = []
-        for _ in range(directions_count):
-            angle = np.random.uniform(0, 360)
-            length = np.random.uniform(min_straight_length, max_straight_length)
-            straights.append((angle, length))
-        trajectory = ZigZagTrajectory(start, straights)
-    return trajectory
+    pass
 
 
 if __name__ == '__main__':
