@@ -4,7 +4,7 @@ This repo contains tasks for the intelligent systems workshop, prepared for the 
 
 Each task can be found in a separate directory. Python files contain skeleton code such that the students do not have to write anything but the algorithm. Each file contains an empty function that should be completed. Each task implements a visualization that should help preview and debug the task. This visualization is produced by running the task file.
 
-The tasks and the supporting code is written naively and without non-algorithmic optimizations, as the purpose is to showcase the algorithms.
+The tasks and the supporting code are written naively and without non-algorithmic optimizations, as the purpose is to showcase the algorithms.
 
 Solution hints:
 - 01: Random search
@@ -17,6 +17,8 @@ Solution hints:
 - 08: Minimax
 - 09: K-means
 - 10: KNN
+
+Task solution implementations can be found on the [solutions](https://github.com/NikolaJov96/Intelligent-systems-workshop/tree/solutions) branch.
 
 Needed libraries are listed in `requirements.txt` and can be installed on Linux by running:
 
