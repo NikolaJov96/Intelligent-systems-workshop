@@ -64,7 +64,7 @@ def create_bicycle_dataset(
         base_height = start_height + (end_height - start_height) * i / dataset_size
         bike_size = BicycleSize(i * len(BicycleSize) // dataset_size)
 
-        height = random.normalvariate(base_height, 5 * deviation_scale)
+        height = random.normalvariate(base_height, 3.5 * deviation_scale)
         leg_length = random.normalvariate(0.5 * height, 2 * deviation_scale)
         arm_length = random.normalvariate(0.4 * height, 2 * deviation_scale)
 
@@ -85,14 +85,16 @@ def plot_bicycle_dataset(dataset: List[Tuple[Cyclist, BicycleSize]], title: str,
     cyclist : Optional[Cyclist]
         The cyclist to highlight in the plot.
     """
+    size_colors = plt.cm.nipy_spectral([i / len(BicycleSize) for i in range(len(BicycleSize))])
+
     xs = [cyclist.arm_length for cyclist, _ in dataset]
     ys = [cyclist.leg_length for cyclist, _ in dataset]
     zs = [cyclist.height for cyclist, _ in dataset]
-    colors = [size.value for _, size in dataset]
+    colors = [size_colors[size.value] for _, size in dataset]
 
     fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(xs, ys, zs, c=colors, cmap='viridis')
+    ax.scatter(xs, ys, zs, c=colors)
 
     if cyclist is not None:
         ax.scatter(cyclist.arm_length, cyclist.leg_length, cyclist.height, c='red', s=100)
@@ -101,4 +103,9 @@ def plot_bicycle_dataset(dataset: List[Tuple[Cyclist, BicycleSize]], title: str,
     ax.set_ylabel('Leg Length')
     ax.set_zlabel('Height')
     ax.set_title(title)
+    ax.legend(handles=[
+        plt.Line2D([0], [0], marker='o', color='w', label=size.name, markerfacecolor=color, markersize=10)
+        for size, color in zip(BicycleSize, size_colors)
+    ])
+
     plt.show()
